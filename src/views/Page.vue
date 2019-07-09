@@ -7,7 +7,7 @@
         </v-layout>
         <v-layout row wrap v-if="!products && !errors">
             <v-flex xs12>
-                <loader />
+                <loader/>
             </v-flex>
         </v-layout>
         <v-layout row wrap v-if="!products && errors">
@@ -120,7 +120,7 @@
                                     <v-icon color="error">delete</v-icon>Delete
                                 </div>
                                 <div class="products__table-actions-confirm">
-                                    <loader absolute v-if="doSomething" />
+                                    <loader absolute v-if="doSomething"/>
                                     <div :class="{hide: doSomething}">
                                         <div class="products__table-actions-title">
                                             Are you sure you want to
@@ -132,7 +132,7 @@
                                                 v-if="errors"
                                             >
                                                 {{ errors.error }}.
-                                                <br />Please, try again later.
+                                                <br>Please, try again later.
                                             </span>
                                             <button class="btn btn--ghost">Cancel</button>
                                             <button
@@ -231,7 +231,7 @@ export default {
             --this.pagination.page;
         },
         nextPage() {
-            ++this.pagination.page;
+            if (this.pagination.page) ++this.pagination.page;
         },
         getPaginationPosition() {
             if (!this.products && !this.products.length) return "";
@@ -261,7 +261,7 @@ export default {
             const columns = this.columnsSelected.map(
                 column => column.value === key
             );
-            return columns.indexOf(true) + 1;
+            return columns.some(() => true);
         },
         openConfirm() {
             this.errors = null;
